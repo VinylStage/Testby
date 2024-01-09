@@ -132,8 +132,7 @@ const IndexPage = () => {
         <span style={headingAccentStyles}>This is Test Page for Gatsby</span>
       </h1>
       <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time. 😎
+        I Will Update this page soon. 😉
       </p>
       <ul style={listStyles}>
         <li style={docLinkStyle}>

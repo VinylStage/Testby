@@ -28,7 +28,7 @@ const NotFoundPage = () => {
     <main style={pageStyles}>
       <h1 style={headingStyles}>Page not found</h1>
       <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
+      Get Back! This is 404 page. You might disappear soon too.
         <br />
         {process.env.NODE_ENV === "development" ? (
           <>
