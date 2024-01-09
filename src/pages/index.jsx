@@ -134,6 +134,10 @@ const IndexPage = () => {
       <p style={paragraphStyles}>
         I Will Update this page soon. 😉
       </p>
+      <p style={paragraphStyles}>
+        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
+        update in real-time. 😎
+      </p>
       <ul style={listStyles}>
         <li style={docLinkStyle}>
           <a
