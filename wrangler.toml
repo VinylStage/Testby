@@ -9,4 +9,4 @@ vars = { GATSBY_GITHUB_TOKEN = "$GATSBY_GITHUB_TOKEN" }
 
 [build]
 command = "yarn build"
-pages_build_output_dir = "public"
+pages_build_output_dir = "/public"
