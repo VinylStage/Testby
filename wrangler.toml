@@ -4,7 +4,7 @@ type = "javascript"
 account_id = "0ae2896ad4579f3c0f2ffa8d34990138"
 
 [env.production]
-name = "tetsby"
+name = "tetsby-worker"
 vars = {
   GATSBY_GITHUB_TOKEN = "$GATSBY_GITHUB_TOKEN"
 }
