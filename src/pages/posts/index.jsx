@@ -18,7 +18,7 @@ function PostCreator() {
         const formattedTitle = title.replace(/\s+/g, '-').toLowerCase();
         const path = `contents/${category}/${new Date().toISOString().slice(0, 10)}-${formattedTitle}/${formattedTitle}.md`;
         const base64Content = btoa(encodeURIComponent(`# ${title}\n\n${content}`));
-        const apiUrl = 'https://tetsby-worker.vinylstage.workers.dev/';
+        const apiUrl = 'https://tetsby-worker.mcpe9869.workers.dev/';
 
         try {
             const response = await axios.post(apiUrl, {
