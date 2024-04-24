@@ -6,40 +6,41 @@ function PostCreator() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
+    const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
     const [isLoading, setLoading] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!title || !content || !category) {
+        if (!title || !content || !category || !date) {
             alert('Please fill in all fields.');
             return;
         }
         setLoading(true);
         const formattedTitle = title.replace(/\s+/g, '-').toLowerCase();
-        const path = `contents/${category}/${new Date().toISOString().slice(0, 10)}-${formattedTitle}/${formattedTitle}.md`;
-        const base64Content = btoa(encodeURIComponent(`# ${title}\n\n${content}`));
+        const path = `contents/${category}/${date}-${formattedTitle}/${formattedTitle}.md`;
         const apiUrl = 'https://tetsby-worker.mcpe9869.workers.dev/';
 
         try {
             const response = await axios.post(apiUrl, {
-                apiToken: process.env.GATSBY_GITHUB_TOKEN,
-                repo: 'VinylStage/Tetsby',
-                path: path,
-                content: base64Content,
-                message: `Add new post: ${title}`
+                title,
+                content,
+                category,
+                date
             }, {
                 headers: {
                     'Content-Type': 'application/json',
                 }
             });
 
+
             if (response.status === 200) {
                 alert('Post created successfully!');
                 setTitle('');
                 setContent('');
                 setCategory('');
+                setDate(new Date().toISOString().slice(0, 10)); // Reset date
             } else {
-                alert('Failed to create post, response status: ' + response.status);
+                alert(`Failed to create post, response status: ${response.status}`);
             }
         } catch (error) {
             console.error('Failed to submit post:', error);
@@ -50,37 +51,46 @@ function PostCreator() {
 
     return (
         <Layout>
-            <form onSubmit={handleSubmit} style={{ margin: "20px" }}>
+            <form onSubmit={handleSubmit} className="m-5">
                 <div>
-                    <label htmlFor="title">Title:</label>
+                    <label htmlFor="title" className="block">Title:</label>
                     <input
                         type="text"
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                         placeholder="Enter post title"
-                        style={{ margin: "10px 0", width: "100%", padding: "8px" }}
+                        className="block w-full p-2 my-2 border border-gray-300 rounded shadow-sm"
                     />
                 </div>
                 <div>
-                    <label htmlFor="content">Content:</label>
+                    <label htmlFor="content" className="block">Content:</label>
                     <textarea
                         value={content}
                         onChange={e => setContent(e.target.value)}
                         placeholder="Enter post content"
-                        style={{ margin: "10px 0", width: "100%", height: "150px", padding: "8px" }}
+                        className="block w-full h-40 p-2 my-2 border border-gray-300 rounded shadow-sm"
                     />
                 </div>
                 <div>
-                    <label htmlFor="category">Category:</label>
+                    <label htmlFor="category" className="block">Category:</label>
                     <input
                         type="text"
                         value={category}
                         onChange={e => setCategory(e.target.value)}
                         placeholder="Enter post category"
-                        style={{ margin: "10px 0", width: "100%", padding: "8px" }}
+                        className="block w-full p-2 my-2 border border-gray-300 rounded shadow-sm"
                     />
                 </div>
-                <button type="submit" disabled={isLoading} style={{ padding: "10px 15px", fontSize: "16px" }}>
+                <div>
+                    <label htmlFor="date" className="block">Date:</label>
+                    <input
+                        type="date"
+                        value={date}
+                        onChange={e => setDate(e.target.value)}
+                        className="block w-full p-2 my-2 border border-gray-300 rounded shadow-sm"
+                    />
+                </div>
+                <button type="submit" disabled={isLoading} className="px-3 py-2 text-lg font-semibold bg-blue-500 text-white rounded hover:bg-blue-700 disabled:bg-gray-300">
                     {isLoading ? 'Creating...' : 'Create Post'}
                 </button>
             </form>
