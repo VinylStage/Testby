@@ -31,7 +31,7 @@ const BlogIndex = () => {
           <h2>{node.frontmatter.category}</h2>
           <ul>
             <li>
-              <Link to={node.fields.slug}>  // slug 필드를 이용한 링크 사용
+              <Link to={node.fields.slug}>
                 <h3 className='text-emerald-400'>{node.frontmatter.title}</h3>
               </Link>
             </li>

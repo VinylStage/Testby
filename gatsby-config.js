@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: `My Gatsby Site`,
-    siteUrl: `https://tetsby.pages.dev/`
+    siteUrl: `https://tetsby.pjundemand.shop/`
   },
   plugins: [
     "gatsby-plugin-postcss",
