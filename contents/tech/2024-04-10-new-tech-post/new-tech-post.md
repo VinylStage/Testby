@@ -1,1 +1,0 @@
-Here%20is%20some%20content%20about%20new%20technology!
