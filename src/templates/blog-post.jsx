@@ -12,7 +12,8 @@ export default function BlogPost({ data }) {
           <h1>{post.frontmatter.title}</h1>
           <p>{post.frontmatter.date}</p>
         </header>
-        <section dangerouslySetInnerHTML={{ __html: post.html }} />
+        {/* markdown-body 클래스를 추가하여 GitHub 스타일 적용 */}
+        <section className="markdown-body" dangerouslySetInnerHTML={{ __html: post.html }} />
       </article>
     </Layout>
   )
